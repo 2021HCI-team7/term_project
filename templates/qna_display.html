@@ -4,9 +4,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/view.css" rel="stylesheet" /> 
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> 
     <title>QNA</title>
 </head>
 <body>
-    <h1>qna 페이지</h1>
+    <div class="header" style="text-align: right">
+        <input type='button' value='Ask Question' onclick='toggleQuestionInputBox()' style=""/>
+    </div>
+    <div id = "question_postbox" style="display:none;">
+        <input type=text id="p_qtitle" placeholder="_title"><br>
+        <input type=text id="p_qcontents" placeholder="_contents">
+        <input type=hidden name="user_id" value="stdnt_01">
+        <button onclick="addQuestion()">Ask!</button>
+    </div>
+    <br>
+    <div id = "question_board"></div>
+        <div class="question_box">
+            <span>질문제목 1</span>
+            <hr>
+            <p>
+                질문내용질문내용질문내용질문내용질문내용질문내용질문내용
+                질문내용질문내용질문내용질문내용질문내용질문내용질문내용
+                질문내용질문내용질문내용질문내용질문내용질문내용질문내용
+            </p>
+        </div>
+    <script>
+        function addQuestion() {
+            const postbox = document.getElementById("question_postbox");
+            var title = document.getElementById("p_qtitle");
+            var contents = document.getElementById("p_qcontents");
+            if (!title.value || !contents.value) {
+                alert("질문 제목과 내용을 모두 작성하세요.");
+                return
+            }
+            // new div 생성
+            newDiv = document.createElement('div');
+            newDiv.setAttribute('class','question_box');
+            const newTitle = document.createElement('span');
+            var date = new Date();
+            newTitle.appendChild(document.createTextNode(title.value));
+
+            const netContents = document.createElement('p');
+            netContents.appendChild(document.createTextNode(contents.value));
+            // new div에 style 추가
+            
+            // text node를 new div에 추가
+            newDiv.appendChild(newTitle);
+            newDiv.appendChild(document.createElement(date.value));
+            newDiv.appendChild(document.createElement('hr'))
+            newDiv.appendChild(netContents);
+            
+            // new div를 기존 div에 추가
+            document.getElementById('question_board').prepend(newDiv);
+
+            title.value="";
+            contents.value="";
+            postbox.style.display ="none";
+        }
+        function toggleQuestionInputBox() {
+            const postbox = document.getElementById("question_postbox");
+            
+            if(postbox.style.display === 'none')  {
+                postbox.style.display = 'block';
+              }else {
+                postbox.style.display = 'none';
+              }
+        }
+    </script>
 </body>
 </html>

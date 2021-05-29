@@ -2,6 +2,7 @@
 .header {
   background-color: #f1f1f1;
   text-align: left;
+  width: 100%;
 }
 .column {
   float: left;
@@ -45,3 +46,20 @@
   display:none;
  }
 
+.question_box {
+  background-color:beige
+}
+
+#question_postbox{
+  width:100%;
+  background-color:cornsilk;
+  padding:10px;
+}
+
+#p_qtitle{
+  width:95%;
+}
+#p_qcontents{
+  width:95%;
+  border:10px;
+}

@@ -2,6 +2,8 @@ from flask import Flask ,request, render_template, make_response
 
 app = Flask(__name__)
 
+#class myClass (self):
+
 
 @app.route('/login') # 해당 주소를 입력 했을때
 def render_login_page() :
