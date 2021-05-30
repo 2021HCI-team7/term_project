@@ -1,6 +1,6 @@
 @charset "utf-8";
 .header {
-  background-color: #f1f1f1;
+  background-color: white;
   text-align: left;
   margin-bottom:2%
 }
@@ -46,4 +46,22 @@
  .menu .hide {
   display:none;
  }
+
+.question_box {
+  background-color:beige
+}
+
+#question_postbox{
+  width:100%;
+  background-color:cornsilk;
+  padding:10px;
+}
+
+#p_qtitle{
+  width:95%;
+}
+#p_qcontents{
+  width:95%;
+  border:10px;
+}
 
