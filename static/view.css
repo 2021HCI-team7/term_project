@@ -1,8 +1,8 @@
 @charset "utf-8";
 .header {
-  background-color: white;
+  background-color: #f1f1f1;
   text-align: left;
-  margin-bottom:2%
+  width: 100%;
 }
 .column {
   float: left;
@@ -15,8 +15,7 @@
 
 /* Middle column */
 .column.wid85 {
-  width: 55%;
-  margin-left:2%
+  width: 85%;
 }
 
 .column.half {
@@ -62,6 +61,12 @@
 }
 #p_qcontents{
   width:95%;
-  border:10px;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
 }
 
