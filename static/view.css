@@ -1,8 +1,8 @@
 @charset "utf-8";
 .header {
-  background-color: #f1f1f1;
+  background-color: white;
   text-align: left;
-  width: 100%;
+  margin-bottom:2%
 }
 .column {
   float: left;
@@ -15,7 +15,8 @@
 
 /* Middle column */
 .column.wid85 {
-  width: 85%;
+  width: 55%;
+  margin-left:2%
 }
 
 .column.half {
