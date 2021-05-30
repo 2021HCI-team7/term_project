@@ -59,24 +59,27 @@
     
     <div class="column wid85"> <!--이 영역이 디스플레이 영역-->
       <button onclick="location.href='tcher_learn1.html'">강의</button> <button onclick="location.href='tcher_hmwrk1.html'">과제</button>
-      <div id="lec_discrip" style="background-color:blueviolet">
+      <div id="lec_discrip" style="background-color:blueviolet;">
         <h4>"Lesson 1"</h4>
       </div>
 
       <div id="lec_list_table" style="background-color:darksalmon;">
-        <h4>동영상 영역</h4>
-        <br>
-        <br>
-        <br>
+        <button type="button" style="float: right;" id="changeVideo">영상수정</button>
+        <form>
+          <input type="file" accept=".mp4" name="file" id="file" style="display: none;">
+          <button type="button" style="float: right;" onclick="onclick=document.all.file.click()">영상선택</button>
+        </form>
+        <center>
+          <video controls width = "800" height = "400">동영상이 존재하지 않습니다.
+            <source id = "lesson" type="video/mp4" src="../video/Cat - 35733.mp4"/>
+          </video>
+        </center>
       </div>
       
       <div id="notice_table" style="background-color:darkgoldenrod">
-        <h4>Q&A 영역</h4>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <center>
+          <iframe src = "qna_display.html" title="qna" name="frame" width = "900" height = "300"></iframe>
+        </center>
       </div>
     
 
