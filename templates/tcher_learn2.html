@@ -13,9 +13,7 @@
 <body>
   <div class = "header">
     <div id = "user_info_area">
-      교수 정보
-      <br>
-      <br>
+      <img src="../image/user.png" width="50" height="50" style="float:left;margin-right:10px;"><span style="font-size:17px;">USER NAME (교사)<br>ID NUMBER</span>
     </div>
   </div>
 
@@ -58,25 +56,24 @@
     <!--메뉴영역 끝-->
     
     <div class="column wid85"> <!--이 영역이 디스플레이 영역-->
-      <button onclick="location.href='tcher_learn2.html'">강의</button> <button onclick="location.href='tcher_hmwrk2.html'">과제</button>
+      <button style="font-weight:bold;font-size: 25px;padding-left:30px;padding-right:30px;padding-top:5px;padding-bottom:5px;outline:0;border:0;border-radius:10px;background-color:#bbdefb;" onclick="location.href='tcher_learn2.html'">강의</button> <button style="font-weight:bold;font-size: 25px;padding-left:30px;padding-right:30px;padding-top:5px;padding-bottom:5px;outline:0;border:0;border-radius:10px;" onclick="location.href='tcher_hmwrk2.html'">과제</button>
       <div id="lec_discrip" style="background-color:blueviolet">
         <h4>"Lesson 2"</h4>
       </div>
 
-      <div id="lec_list_table" style="background-color:darksalmon;">
-        <button type="button" style="float: right;" id="changeVideo">영상수정</button>
+      <div id="lec_list_table">
         <form>
           <input type="file" accept=".mp4" name="file" id="file" style="display: none;">
-          <button type="button" style="float: right;" onclick="onclick=document.all.file.click()">영상선택</button>
+          <button type="button" style="float: right;" onclick="changeVideo()">영상수정</button>
         </form>
         <center>
           <video controls width = "800" height = "400">동영상이 존재하지 않습니다.
-            <source id = "lesson" type="video/mp4" src="../video/Cat - 35733.mp4"/>
+            <source id = "lesson" type="video/mp4" src="../video/learn2.mp4"/>
           </video>
         </center>
       </div>
       
-      <div id="notice_table" style="background-color:darkgoldenrod">
+      <div id="notice_table">
         <center>
           <iframe src = "qna_display.html" title="qna" name="frame" width = "900" height = "300"></iframe>
         </center>
@@ -117,6 +114,19 @@
         $(this).next("ul").toggleClass("hide");
         });
         });
+  </script>
+
+  <script>
+    function changeVideo() {
+      document.all.file.click();
+      let filename, filevalue;
+      filevalue = $("#file").val().split("\\");
+      filename = filevalue[filevalue.length-1];
+      let path = '../video/' + filename;
+      $("#lesson").attr("src", path);
+      $("#myVideo").load();
+      document.getElementById("myVideo").play();
+    }
   </script>
 </body>
 </html>
