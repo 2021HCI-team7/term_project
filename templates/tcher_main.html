@@ -6,9 +6,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>teacher page</title>
     <link href="../static/view.css" rel="stylesheet" />
-
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> 
+    <!--여기까지 레이아웃, 펼쳐지는 메뉴 등과 같은 기능 라이브러리-->
 </head>
 <body>
-    <h1>교사 페이지</h1>
+  <div class = "header">
+    <div id = "user_info_area">
+      <div class = "header_info">
+			<img  src="../image/user.png"  
+				 style = "width:50px; 
+						  height:50px; 
+						  float: left;
+						  margin-right: 10px; ">
+			<div class = "info">
+				<span>
+				<b>USERNAME (교수) </b> <br>
+				<b>ID NUMBER </b>
+				</span>
+		</div>
+	  </div>
+    </div>
+  </div>
+
+  <div class = "row">
+
+    <div class="column wid15" > <!--이 영역이 메뉴 영역-->
+      <div class="lec_box" style="background-color: lightgray; height: auto; min-height: 500px; border-radius: 1px 1px 1px 0px;">
+        
+        <div style="text-align: center;background-color:cornflowerblue;font-size:large" width="100"><b>수강목록</b></div>
+        <div>
+          <ul>
+            <li class="menu"> <a>수업1</a>
+              <ul class="hide">
+                <li>1-week</a></li>
+               <p></p>
+				  <a>＋수업추가</a>
+                
+              </ul>
+            </li>
+			  <p></p><oi class="menu" > 
+			  <a><b>
+			  신규강의개설</b></a>  </oi>
+           </ul>
+		</div>
+            
+
+               
+               
+             
+          
+         
+			
+      
+	  
+		</div>
+	 	  
+</div>
+    
+    
+    <div class="column wid85"> <!--이 영역이 디스플레이 영역-->
+      <div id="lec_discrip"  >
+		  <div class="header">
+			  <h4>"수업이름"</h4></div>
+        <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+     
+      
+		</div>
+      <div id="lec_list_table"  class="column half">
+        <h4 style=" background-color:cornflowerblue; margin-right: 2pt">수업목록</h4>
+        <table style="width: 100%; border-width: none;">
+		<tr style="background-color:lightgrey; ">
+				   
+			<th width="18%" style="border-left-style: none">No.</th>
+			<th width="41%" style="border-left-style: none">title</th>		
+			<th width="41%" style="border-left-style: none">hw</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>&nbsp;</td>		
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>&nbsp;</td>		
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>		
+			<td>&nbsp;</td>
+		</tr><tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>		
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+      </div>
+      
+      <div id="notice_table" class="column half" >
+        <h4  style="background-color:darkgoldenrod; margin-left: 2pt" >공지사항</h4>
+       <table style="width:100% ; border-bottom: medium;">
+		  <tr style="background-color:lightgrey">
+			<th width="30%">date&nbsp;</th>
+			<th width="70%">notice</th>		
+			
+		</tr>
+		<tr>
+			<td class="date">2021.05<em><strong>.</strong></em>30</td>
+			<td>title</td>		
+			
+		</tr>
+		
+		<tr>
+			<td class="date">...</td>
+			<td>&nbsp;</td>		
+		
+		</tr>
+		<tr>
+			<td class="date">&nbsp;</td>
+			<td>&nbsp;</td>		
+			
+		</tr><tr>
+			<td class="date">&nbsp;</td>
+			<td>&nbsp;</td>		
+			
+		</tr>
+	</table>
+		 
+      </div>
+    
+
+    </div>
+
+  </div>  
+
+<!--여기 아래부터 자바 스크립트 코드.-->
+  <script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+
+  <script>
+    /*펼쳐지는 메뉴 관련 Jquery 스크립트*/
+      $(document).ready(function(){
+        $(".menu>a").click(function(){
+        $(this).next("ul").toggleClass("hide");
+        });
+        });
+  </script>
 </body>
+
 </html>

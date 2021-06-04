@@ -13,27 +13,38 @@
 <body>
   <div class = "header">
     <div id = "user_info_area">
-      유저 정보 표시 영역
-      <br>
-      <br>
+      <div class = "header_info">
+			<img  src="../image/user.png"  
+				 style = "width:50px; 
+						  height:50px; 
+						  float: left;
+						  margin-right: 10px; ">
+			<div class = "info">
+				<span>
+				<b>USERNAME (학생) </b> <br>
+				<b>ID NUMBER </b>
+				</span>
+		</div>
+	  </div>
     </div>
   </div>
 
   <div class = "row">
 
     <div class="column wid15" > <!--이 영역이 메뉴 영역-->
-      <div class="lec_box" style="background-color:lightgray;height:auto;min-height:500px">
-        <a style="background-color:aqua;font-size:large" width="100%">수업목록메뉴</a>
+      <div class="lec_box" style="background-color: lightgray; height: auto; min-height: 500px; ">
+        
+        <div style="text-align: center;background-color:cornflowerblue;font-size:large" width="100"><b>수강목록</b></div>
         <div>
           <ul>
             <li class="menu"> <a>수업1</a>
               <ul class="hide">
                 <li><a href="/stdnt_learn">Lesson 1</a></li>
-                <li>메뉴1-2</li>
-                <li>메뉴1-3</li>
-                <li>메뉴1-4</li>
-                <li>메뉴1-5</li>
-                <li>메뉴1-6</li>
+                <li>1-2</li>
+                <li>1-3</li>
+                <li>1-4</li>
+                <li>1-5</li>
+                <li>1-6</li>
               </ul>
             </li>
             
@@ -49,44 +60,106 @@
             </li>
 
           </ul>
-
+			
         </div>
-
-      </div>
-
-    </div>
+	    <span >
+      <input type="text" name="username" style = "width: 120px; height: 20px; text-align: left; margin-top: 372px; margin-left: 5px;" placeholder="강의명 검색"> 
+	 </span>
+		</div>
+	 	  
+</div>
     
     
     <div class="column wid85"> <!--이 영역이 디스플레이 영역-->
-      <!--이 아래에서 부터 코드를 작성하세요.-->
-      <div id="lec_discrip"  class="header" style="background-color:blueviolet">
-        <h4>"수업이름"</h4>
-        <p>수업설명영역</p>
-        <br>
-        <br>
-        <br>
-        <br>
-      </div>
-
-      <div id="lec_list_table" style="background-color:darksalmon;" class="column half">
-        <h4>수업목록영역</h4>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+      <div id="lec_discrip"  >
+		  <div class="header">
+			  <h4>"수업이름"</h4></div>
+         <div class="lec_ing"> 
+                <table class="lec_table"> 
+                
+                <colgroup><col width="104px" /><col /></colgroup> 
+                <tbody> 
+                <tr> 
+                    <th>나의 진도</th> 
+                    <td><p class="per"><span style="width:77.8%;"></span></p> <span class="num"></span></td> 
+                </tr> 
+                <tr> 
+                    <th>권장 진도</th> 
+                    <td><p class="per"><span style="width:92.3%;"></span></p> <span class="num"></span></td> 
+                </tr> 
+                <tr> 
+                    <th>평균 진도</th> 
+                    <td><p class="per"><span style="width:90.9%;"></span></p> <span class="num"></span></td> 
+                </tr> 
+                </tbody> 
+                </table> 
+            </div> 
+      
+		</div>
+      <div id="lec_list_table"  class="column half">
+        <h4 style=" background-color:cornflowerblue; margin-right: 2pt">수업목록</h4>
+        <table style="width: 100%; border-width: none;">
+		<tr style="background-color:lightgrey; ">
+				   
+			<th width="18%" style="border-left-style: none">No.</th>
+			<th width="41%" style="border-left-style: none">title</th>		
+			<th width="41%" style="border-left-style: none">hw</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>&nbsp;</td>		
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>&nbsp;</td>		
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>		
+			<td>&nbsp;</td>
+		</tr><tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>		
+			<td>&nbsp;</td>
+		</tr>
+	</table>
       </div>
       
-      <div id="notice_table" class="column half" style="background-color:darkgoldenrod">
-        <h4>공지사항영역</h4>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+      <div id="notice_table" class="column half" >
+        <h4  style="background-color:darkgoldenrod; margin-left: 2pt" >공지사항</h4>
+       <table style="width:100% ; border-bottom: medium;">
+		  <tr style="background-color:lightgrey">
+			<th width="30%">date&nbsp;</th>
+			<th width="70%">notice</th>		
+			
+		</tr>
+		<tr>
+			<td class="date">2021.05.30</td>
+			<td>title</td>		
+			
+		</tr>
+		
+		<tr>
+			<td class="date">...</td>
+			<td>&nbsp;</td>		
+		
+		</tr>
+		<tr>
+			<td class="date">&nbsp;</td>
+			<td>&nbsp;</td>		
+			
+		</tr><tr>
+			<td class="date">&nbsp;</td>
+			<td>&nbsp;</td>		
+			
+		</tr>
+	</table>
+		 
       </div>
     
-      <!--이 위로 코드를 작성하세요.-->
+
     </div>
 
   </div>  

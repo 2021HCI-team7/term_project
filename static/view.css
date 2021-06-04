@@ -15,7 +15,8 @@
 
 /* Middle column */
 .column.wid85 {
-  width: 85%;
+  width: 55%;
+  margin-left: 2%;
 }
 
 .column.half {
@@ -70,3 +71,29 @@
   resize: none;
 }
 
+
+
+.info > span{
+	font-size: 17px;
+}
+
+#lec_discrip >.header {
+	background-color:cornflowerblue;
+	height: inherit;
+}
+#lec_list_table {
+text-align: center;
+	vertical-align: middle;
+	
+}
+#notice_table {
+text-align: center;
+	vertical-align: middle;
+	
+}
+.date {
+	font-size: 13px;
+}
+#lec_list_table > td {
+	border-bottom: medium;
+}
