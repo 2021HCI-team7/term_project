@@ -62,14 +62,15 @@
       </div>
 
       <div id="lec_list_table">
-        <form>
-          <input type="file" accept=".mp4" name="file" id="file" style="display: none;">
-          <button type="button" style="float: right;" onclick="changeVideo()">영상수정</button>
+        <button type="button" style="float: right;" onclick="toggleInputBox()">영상수정</button>
+        <br>
+        <br>
+        <form id="URL_box" style="display: none; float: right;">                
+          <input type="url" id="URL_text">
+          <button type="button" id="change" onclick="changeVideo()">적용</button>
         </form>
         <center>
-          <video controls width = "800" height = "400">동영상이 존재하지 않습니다.
-            <source id = "lesson" type="video/mp4" src="../video/learn2.mp4"/>
-          </video>
+          <iframe width="800" height="400" id="lesson" src="https://www.youtube.com/embed/xnPJksHSS9c?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </center>
       </div>
       
@@ -118,14 +119,18 @@
 
   <script>
     function changeVideo() {
-      document.all.file.click();
-      let filename, filevalue;
-      filevalue = $("#file").val().split("\\");
-      filename = filevalue[filevalue.length-1];
-      let path = '../video/' + filename;
-      $("#lesson").attr("src", path);
-      $("#myVideo").load();
-      document.getElementById("myVideo").play();
+      const url = document.getElementById('URL_text').value + '?enablejsapi=1';
+      document.getElementById("lesson").src = url;
+    }
+
+    function toggleInputBox() {
+      const urlbox = document.getElementById("URL_box");
+          
+      if(urlbox.style.display === 'none')  {
+        urlbox.style.display = 'block';
+      }else {
+        urlbox.style.display = 'none';
+      }
     }
   </script>
 </body>
