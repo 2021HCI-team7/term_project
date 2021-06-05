@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="header" style="text-align: right">
+        <input type='button' value='generate dummy' onclick='addDummyQuestion()' />
         <input type='button' value='Ask Question' onclick='toggleQuestionInputBox()' />
     </div>
     <div id = "question_postbox" style="display:none;">
@@ -19,7 +20,7 @@
         <button onclick="addQuestion()">Ask!</button>
     </div>
     <br>
-    <div id = "question_board"></div>
+    <div id = "question_board">
         <div class="question_box">
             <span>질문제목 1</span>
             <hr>
@@ -29,6 +30,9 @@
                 질문내용질문내용질문내용질문내용질문내용질문내용질문내용
             </p>
         </div>
+    </div>
+
+
     <script>
         function addQuestion() {
             const postbox = document.getElementById("question_postbox");
@@ -41,19 +45,36 @@
             // new div 생성
             newDiv = document.createElement('div');
             newDiv.setAttribute('class','question_box');
+            
             const newTitle = document.createElement('span');
-            var date = new Date();
             newTitle.appendChild(document.createTextNode(title.value));
 
-            const netContents = document.createElement('p');
-            netContents.appendChild(document.createTextNode(contents.value));
-            // new div에 style 추가
+            var date = new Date();
+            const createdDate = document.createElement('span')
+            createdDate.innerHTML = date
+
+            const closeButton = document.createElement('span');
+            closeButton.appendChild(document.createTextNode('x'));
+            closeButton.setAttribute('class','close');
+            closeButton.addEventListener("click", function() {
+                var r= confirm("질문을 삭제하시겠습니까?")
+                if (r==true) {
+                    this.parentElement.style.display = 'none';
+                }
+            });
+
+            
+    
+            const newContents = document.createElement('p');
+            newContents.appendChild(document.createTextNode(contents.value));
+            
             
             // text node를 new div에 추가
             newDiv.appendChild(newTitle);
-            newDiv.appendChild(document.createElement(date.value));
+            newDiv.appendChild(createdDate);
+            newDiv.appendChild(closeButton);
             newDiv.appendChild(document.createElement('hr'))
-            newDiv.appendChild(netContents);
+            newDiv.appendChild(newContents);
             
             // new div를 기존 div에 추가
             document.getElementById('question_board').prepend(newDiv);
@@ -70,6 +91,32 @@
               }else {
                 postbox.style.display = 'none';
               }
+        }
+
+        function addDummyQuestion() {
+            // new div 생성
+            console.log('hiddenbuttonclicked')
+            newDiv = document.createElement('div');
+            newDiv.setAttribute('class','question_box');
+            
+            const newTitle = document.createElement('span');
+            newTitle.appendChild(document.createTextNode('(dummy for test) question title on here'));
+            
+            var date = new Date();
+            const createdDate = document.createElement('span')
+            createdDate.innerHTML = date
+            
+            const newContents = document.createElement('p');
+            newContents.appendChild(document.createTextNode('(dummy fot test) contents of question on here'));
+            
+            newDiv.appendChild(newTitle);
+            newDiv.appendChild(createdDate);
+            newDiv.appendChild(document.createElement('hr'))
+            newDiv.appendChild(newContents);
+            
+            // new div를 기존 div에 추가
+            document.getElementById('question_board').prepend(newDiv);
+
         }
     </script>
 </body>
