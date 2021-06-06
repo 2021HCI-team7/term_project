@@ -13,9 +13,7 @@
 <body>
   <div class = "header">
     <div id = "user_info_area">
-      유저 정보 표시 영역
-      <br>
-      <br>
+      <img src="../image/user.png" width="50" height="50" style="float:left;margin-right:10px;"><span style="font-size:17px;">USER NAME (학생)<br>ID NUMBER</span>
     </div>
   </div>
 
@@ -58,20 +56,21 @@
     <!--메뉴영역 끝-->
     
     <div class="column wid85"> <!--이 영역이 디스플레이 영역-->
-      <button onclick="location.href='stdnt_learn1.html'">강의</button> <button onclick="location.href='stdnt_hmwrk1.html'">과제</button>
+      <button style="font-weight:bold;font-size: 25px;padding-left:30px;padding-right:30px;padding-top:5px;padding-bottom:5px;outline:0;border:0;border-radius:10px;background-color:#bbdefb;" onclick="location.href='stdnt_learn1.html'">강의</button> <button style="font-weight:bold;font-size: 25px;padding-left:30px;padding-right:30px;padding-top:5px;padding-bottom:5px;outline:0;border:0;border-radius:10px;" onclick="location.href='stdnt_hmwrk1.html'">과제</button>
       <div id="lec_discrip" style="background-color:blueviolet">
         <h4>"Lesson 1"</h4>
       </div>
 
-      <div id="lec_list_table" style="background-color:darksalmon;">
-        <h4>동영상 영역</h4>
-        <br>
-        <br>
-        <br>
+      <div id="lec_list_table">
+        <center>
+          <iframe width="800" height="400" id="lesson" src="https://www.youtube.com/embed/7O0WVaaB_x8?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </center>
       </div>
       
-      <div id="qnaArea" style="background-color:darkgoldenrod;height:auto;min-height: 600px;">
-        <iframe src="qna_display.html" frameborder=0 style="width:100%;height:100%;min-height:600px"></iframe>
+      <div id="notice_table">
+        <center>
+          <iframe src = "qna_display.html" title="qna" name="frame" width = "900" height = "300"></iframe>
+        </center>
       </div>
     
 

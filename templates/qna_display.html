@@ -10,30 +10,40 @@
 </head>
 <body>
     <div class="header" style="text-align: right">
-        <input type='button' value='generate dummy' onclick='addDummyQuestion()' />
+        <input type='button' value='dev_func generate dummy' onclick='addDummyQuestion()' />
         <input type='button' value='Ask Question' onclick='toggleQuestionInputBox()' />
     </div>
     <div id = "question_postbox" style="display:none;">
-        <input type=text id="p_qtitle" placeholder="_title"><br>
-        <input type=text id="p_qcontents" placeholder="_contents">
+        <input type=text id="p_qtitle" placeholder="_title" maxlength="65"><br>
+        <textarea id = "p_qcontents" cols=80 wrap="hard"></textarea>
         <input type=hidden name="user_id" value="stdnt_01">
         <button onclick="addQuestion()">Ask!</button>
     </div>
     <br>
     <div id = "question_board">
-        <div class="question_box">
-            <span>질문제목 1</span>
-            <hr>
-            <p>
-                질문내용질문내용질문내용질문내용질문내용질문내용질문내용
-                질문내용질문내용질문내용질문내용질문내용질문내용질문내용
-                질문내용질문내용질문내용질문내용질문내용질문내용질문내용
-            </p>
+        <div id = 'qnaModal'>
+            <div id ='qnaModal-contents'>
+            </div>
+        </div>
+        <div id = "my_questions">
+        </div>
+        <div id = "fixed_questions">
+        </div>
+        <div id = "questions">
         </div>
     </div>
 
-
     <script>
+        
+        function toggleQuestionInputBox() {
+            const postbox = document.getElementById("question_postbox");
+            
+            if(postbox.style.display === 'none')  {
+                postbox.style.display = 'block';
+              }else {
+                postbox.style.display = 'none';
+              }
+        }
         function addQuestion() {
             const postbox = document.getElementById("question_postbox");
             var title = document.getElementById("p_qtitle");
@@ -43,14 +53,22 @@
                 return
             }
             // new div 생성
-            newDiv = document.createElement('div');
+            
+            
+            const newDiv = document.createElement('div');
             newDiv.setAttribute('class','question_box');
             
+            const mark = document.createElement('span');
+            mark.setAttribute('class','mark_my_question')
+            mark.innerHTML='MY'
+
             const newTitle = document.createElement('span');
+            newTitle.setAttribute('class','qtitle')
             newTitle.appendChild(document.createTextNode(title.value));
 
             var date = new Date();
             const createdDate = document.createElement('span')
+            createdDate.setAttribute('class','inline-date')
             createdDate.innerHTML = date
 
             const closeButton = document.createElement('span');
@@ -63,59 +81,112 @@
                 }
             });
 
-            
-    
             const newContents = document.createElement('p');
+            newContents.setAttribute('class', 'qcontents')
             newContents.appendChild(document.createTextNode(contents.value));
-            
+
+            const answerContents = document.createElement('div');
+            answerContents.setAttribute('class','answer_contents hide')
             
             // text node를 new div에 추가
+            newDiv.appendChild(mark)
             newDiv.appendChild(newTitle);
             newDiv.appendChild(createdDate);
             newDiv.appendChild(closeButton);
-            newDiv.appendChild(document.createElement('hr'))
+            newDiv.appendChild(document.createElement('hr'));
             newDiv.appendChild(newContents);
-            
-            // new div를 기존 div에 추가
-            document.getElementById('question_board').prepend(newDiv);
+            newDiv.appendChild(answerContents)
+            newDiv.onclick = function() {showFullQnA(this)}
 
             title.value="";
             contents.value="";
             postbox.style.display ="none";
+            // new div를 기존 div에 추가
+            document.getElementById('my_questions').prepend(newDiv);
         }
-        function toggleQuestionInputBox() {
-            const postbox = document.getElementById("question_postbox");
+
+        function showFullQnA (qbox_obj) {
+            modal = document.getElementById('qnaModal')
+            modal_contents = document.getElementById('qnaModal-contents');
+            modal_contents.innerHTML = ''
+            const closeButton = document.createElement('span');
+            closeButton.innerHTML = 'x';
+            closeButton.setAttribute('class','close');
+            closeButton.addEventListener("click", function() {
+                modal.style.display = 'none';    
+            });
             
-            if(postbox.style.display === 'none')  {
-                postbox.style.display = 'block';
-              }else {
-                postbox.style.display = 'none';
-              }
-        }
+            title = qbox_obj.getElementsByClassName('qtitle')[0].cloneNode(true)
+            date = qbox_obj.getElementsByClassName('inline-date')[0].cloneNode(true)
+            contents = qbox_obj.getElementsByClassName('qcontents')[0].cloneNode(true)
+            answer = qbox_obj.getElementsByClassName('answer_contents')[0].cloneNode(true)
+            answer.setAttribute('class', 'answer_contents')
+
+            header_question = document.createElement('span')
+            header_question.setAttribute('class', 'headline4')
+            header_question.innerHTML = 'Q.'
+            
+            header_answer = document.createElement('span')
+            header_answer.setAttribute('class', 'headline4')
+            header_answer.innerHTML = 'A.'
+            
+            
+            modal_contents.appendChild(closeButton)
+            modal_contents.appendChild(document.createElement('br'))
+            modal_contents.appendChild(header_question)
+            modal_contents.appendChild(title)
+            modal_contents.appendChild(date)
+            modal_contents.appendChild(document.createElement('hr'))
+            modal_contents.appendChild(contents)
+            modal_contents.appendChild(document.createElement('hr'))
+            modal_contents.appendChild(header_answer)
+            
+            if(answer.innerHTML==''){
+                msg = document.createElement('span')
+                msg.setAttribute('class','answer_contents')
+                msg.setAttribute('style','font-style:italic;')
+                msg.innerHTML = '답변을 기다려주세요'
+                modal_contents.appendChild(msg)
+            }
+            else{
+
+                modal_contents.appendChild(answer)
+            }
+            
+            modal.style.display = 'block';
+        }        
 
         function addDummyQuestion() {
             // new div 생성
-            console.log('hiddenbuttonclicked')
             newDiv = document.createElement('div');
             newDiv.setAttribute('class','question_box');
             
             const newTitle = document.createElement('span');
+            newTitle.setAttribute('class','qtitle')
             newTitle.appendChild(document.createTextNode('(dummy for test) question title on here'));
             
             var date = new Date();
             const createdDate = document.createElement('span')
+            createdDate.setAttribute('class','inline-date')
             createdDate.innerHTML = date
             
             const newContents = document.createElement('p');
+            newContents.setAttribute('class', 'qcontents')
             newContents.appendChild(document.createTextNode('(dummy fot test) contents of question on here'));
             
+            const answerContents = document.createElement('div');
+            answerContents.setAttribute('class','answer_contents hide')
+            answerContents.innerHTML = 'some answers'
+
             newDiv.appendChild(newTitle);
             newDiv.appendChild(createdDate);
             newDiv.appendChild(document.createElement('hr'))
             newDiv.appendChild(newContents);
-            
+            newDiv.appendChild(answerContents)
+            newDiv.onclick = function() {showFullQnA(this)}
+
             // new div를 기존 div에 추가
-            document.getElementById('question_board').prepend(newDiv);
+            document.getElementById('questions').prepend(newDiv);
 
         }
     </script>
