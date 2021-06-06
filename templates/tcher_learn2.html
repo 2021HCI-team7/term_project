@@ -119,8 +119,10 @@
 
   <script>
     function changeVideo() {
-      const url = document.getElementById('URL_text').value + '?enablejsapi=1';
-      document.getElementById("lesson").src = url;
+      const url = document.getElementById('URL_text').value;
+      const urlArray = url.split("=");
+      const newUrl = 'https://www.youtube.com/embed/' + urlArray[1] + '?enablejsapi=1';
+      document.getElementById("lesson").src = newUrl;
     }
 
     function toggleInputBox() {
