@@ -154,6 +154,11 @@
 	font-size: 17px;
 }
 
+
+.info > span{
+	font-size: 17px;
+}
+
 #lec_discrip >.header {
 	background-color:cornflowerblue;
 	height: inherit;
