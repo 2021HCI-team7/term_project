@@ -58,6 +58,9 @@
             const newDiv = document.createElement('div');
             newDiv.setAttribute('class','question_box');
             
+            const questionBoxContents = document.createElement('div');
+            questionBoxContents.setAttribute('class', 'question_box_contents')
+
             const mark = document.createElement('span');
             mark.setAttribute('class','mark_my_question')
             mark.innerHTML='MY'
@@ -89,15 +92,19 @@
             answerContents.setAttribute('class','answer_contents hide')
             
             // text node를 new div에 추가
-            newDiv.appendChild(mark)
-            newDiv.appendChild(newTitle);
-            newDiv.appendChild(createdDate);
-            newDiv.appendChild(closeButton);
-            newDiv.appendChild(document.createElement('hr'));
-            newDiv.appendChild(newContents);
-            newDiv.appendChild(answerContents)
-            newDiv.onclick = function() {showFullQnA(this)}
+            
 
+            questionBoxContents.appendChild(mark)
+            questionBoxContents.appendChild(newTitle);
+            questionBoxContents.appendChild(createdDate);
+            questionBoxContents.appendChild(document.createElement('hr'));
+            questionBoxContents.appendChild(newContents);
+            questionBoxContents.appendChild(answerContents)
+            questionBoxContents.onclick = function() {showFullQnA(this)}
+
+            newDiv.appendChild(closeButton);
+            newDiv.appendChild(questionBoxContents);
+            
             title.value="";
             contents.value="";
             postbox.style.display ="none";
