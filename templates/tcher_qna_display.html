@@ -16,10 +16,11 @@
     <div id = "question_board">
         <div id = 'qnaModal'>
             <div id ='qnaModal_contents'>
+                <input id = "pin" type="button" value="PIN">
                 <span id='modal_close' class='close'> x </span>
                 <br>
                 <div id = 'qnaModal_qTitle' class='headline4'></div>
-                <div id = 'qnaModal_qDate' class='inline-date'></div>
+                <div id = 'qnaModal_qDateUser' class='inline-date'></div>
                 <hr>
                 <div id = 'qnaModal_qContents' class='qcontents'></div>
                 <hr>
@@ -28,8 +29,6 @@
                 <textarea id="input_answer" cols=140 wrap='hard' style="display:none"></textarea>
                 <input id = "answer_btn" type="button" value='Answer!' >
             </div>
-        </div>
-        <div id = "my_questions">
         </div>
         <div id = "fixed_questions">
         </div>
@@ -42,7 +41,7 @@
         modal_close.addEventListener("click", function() {
             modal.style.display = 'none'; 
             document.getElementById('qnaModal_qTitle').innerHTML=''
-            document.getElementById('qnaModal_qDate').innerHTML=''
+            document.getElementById('qnaModal_qDateUser').innerHTML=''
             document.getElementById('qnaModal_qContents').innerHTML=''
             document.getElementById('qnaModal_anwerContents').innerHTML=''
             document.getElementById('input_answer').innerHTML=''
@@ -83,17 +82,18 @@
             modal_contents = document.getElementById('qnaModal_contents');
 
             modal_qTitle = document.getElementById('qnaModal_qTitle')
-            modal_qDate = document.getElementById('qnaModal_qDate')
+            modal_qDateUser = document.getElementById('qnaModal_qDateUser')
             modal_qContents = document.getElementById('qnaModal_qContents')
             modal_answer = document.getElementById('qnaModal_anwerContents')
 
             title = qbox_obj.getElementsByClassName('qtitle')[0].innerHTML;
             date = qbox_obj.getElementsByClassName('inline-date')[0].innerHTML;
+            user = qbox_obj.getElementsByClassName('user_id')[0].innerHTML;
             contents = qbox_obj.getElementsByClassName('qcontents')[0].innerHTML;
             answer = qbox_obj.getElementsByClassName('answer_contents hide')[0].innerHTML;
             
             modal_qTitle.innerHTML = 'Q. '+title
-            modal_qDate.innerHTML = date
+            modal_qDateUser.innerHTML = date+'by. \''+user+'\''
             modal_qContents.innerHTML = contents
             if(answer ==''){
                 modal_answer.innerHTML = '작성된 답변이 없습니다.'
@@ -112,8 +112,6 @@
             modal.style.display = 'block';
         }        
 
-
-        
         function addDummyQuestion() {
             // new div 생성
             newDiv = document.createElement('div');
@@ -128,6 +126,11 @@
             createdDate.setAttribute('class','inline-date')
             createdDate.innerHTML = date
             
+            var userid = 'user'+(Math.floor(Math.random()*50))
+            postUser = document.createElement('span')
+            postUser.setAttribute('class', 'user_id')
+            postUser.innerHTML='  by. '+userid
+
             const newContents = document.createElement('p');
             newContents.setAttribute('class', 'qcontents')
             newContents.appendChild(document.createTextNode('(dummy fot test) contents of question on here'));
@@ -138,6 +141,7 @@
 
             newDiv.appendChild(newTitle);
             newDiv.appendChild(createdDate);
+            newDiv.appendChild(postUser)
             newDiv.appendChild(document.createElement('hr'))
             newDiv.appendChild(newContents);
             newDiv.appendChild(answerContents)
@@ -147,9 +151,9 @@
             document.getElementById('questions').prepend(newDiv);
         }
     
-        
-        
+        function pinQuestion (qbox_obj) {
 
+        }
     </script>
 </body>
 </html>
