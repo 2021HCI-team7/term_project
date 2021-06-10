@@ -78,7 +78,7 @@
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w*/
 }
-#qnaModal-contents {
+#qnaModal_contents {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -110,6 +110,7 @@
 .answer_contents.hide{
   display:none;
 }
+
 .inline-date{
   color:black;
   font-weight: lighter;

@@ -6,18 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../static/view.css" rel="stylesheet" /> 
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> 
-    <title>QNA</title>
+    <title>QNA-Teacher</title>
 </head>
 <body>
     <div class="header" style="text-align: right">
         <input type='button' value='dev_func generate dummy' onclick='addDummyQuestion()' />
-        <input type='button' value='Ask Question' onclick='toggleQuestionInputBox()' />
-    </div>
-    <div id = "question_postbox" style="display:none;">
-        <input type=text id="p_qtitle" placeholder="_title" maxlength="65"><br>
-        <textarea id = "p_qcontents" cols=80 wrap="hard"></textarea>
-        <input type=hidden name="user_id" value="stdnt_01">
-        <button onclick="addQuestion()">Ask!</button>
     </div>
     <br>
     <div id = "question_board">
@@ -32,6 +25,8 @@
                 <hr>
                 <span class='headline4'>A.</span>
                 <div id = 'qnaModal_anwerContents' class='answer_contents'></div>
+                <textarea id="input_answer" cols=140 wrap='hard' style="display:none"></textarea>
+                <input id = "answer_btn" type="button" value='Answer!' >
             </div>
         </div>
         <div id = "my_questions">
@@ -53,80 +48,36 @@
             document.getElementById('input_answer').innerHTML=''
         });
 
-        function toggleQuestionInputBox() {
-            const postbox = document.getElementById("question_postbox");
-            
-            if(postbox.style.display === 'none')  {
-                postbox.style.display = 'block';
-              }else {
-                postbox.style.display = 'none';
-              }
+        function postAnswer(qbox_obj){
+            btn = document.getElementById('answer_btn')
+            modal_answer = document.getElementById('qnaModal_anwerContents')
+            text_area = document.getElementById('input_answer')
+
+            if (btn.value == 'Answer!'){
+                modal_answer.style.display='none'
+                text_area.style.display='block'
+                
+                if (modal_answer.innerHTML != '작성된 답변이 없습니다.'){
+                    text_area.value = modal_answer.innerHTML
+                }
+                btn.setAttribute('value','DONE!')
+            }
+            else {
+
+                if (text_area.value != ''){
+                    modal_answer.innerHTML=text_area.value
+                    qbox_obj.getElementsByClassName('answer_contents hide')[0].innerHTML = modal_answer.innerHTML
+                }
+                else {
+                    modal_answer.innerHTML = '작성된 답변이 없습니다.'
+                    qbox_obj.getElementsByClassName('answer_contents hide')[0].innerHTML = ''
+                }
+                modal_answer.style.display='block'
+                text_area.style.display='none'
+                btn.setAttribute('value','Answer!')
+            }
         }
         
-        function addQuestion() {
-            const postbox = document.getElementById("question_postbox");
-            var title = document.getElementById("p_qtitle");
-            var contents = document.getElementById("p_qcontents");
-            if (!title.value || !contents.value) {
-                alert("질문 제목과 내용을 모두 작성하세요.");
-                return
-            }
-    
-            const newDiv = document.createElement('div');
-            newDiv.setAttribute('class','question_box');
-            
-            const questionBoxContents = document.createElement('div');
-            questionBoxContents.setAttribute('class', 'question_box_contents')
-
-            const mark = document.createElement('span');
-            mark.setAttribute('class','mark_my_question')
-            mark.innerHTML='MY'
-
-            const newTitle = document.createElement('span');
-            newTitle.setAttribute('class','qtitle')
-            newTitle.appendChild(document.createTextNode(title.value));
-
-            var date = new Date();
-            const createdDate = document.createElement('span')
-            createdDate.setAttribute('class','inline-date')
-            createdDate.innerHTML = date
-
-            const closeButton = document.createElement('span');
-            closeButton.appendChild(document.createTextNode('x'));
-            closeButton.setAttribute('class','close');
-            closeButton.addEventListener("click", function() {
-                var r= confirm("질문을 삭제하시겠습니까?")
-                if (r==true) {
-                    this.parentElement.style.display = 'none';
-                }
-            });
-
-            const newContents = document.createElement('p');
-            newContents.setAttribute('class', 'qcontents')
-            newContents.appendChild(document.createTextNode(contents.value));
-
-            const answerContents = document.createElement('div');
-            answerContents.setAttribute('class','answer_contents hide')
-            
-            // text node를 new div에 추가
-            questionBoxContents.appendChild(mark)
-            questionBoxContents.appendChild(newTitle);
-            questionBoxContents.appendChild(createdDate);
-            questionBoxContents.appendChild(document.createElement('hr'));
-            questionBoxContents.appendChild(newContents);
-            questionBoxContents.appendChild(answerContents)
-            questionBoxContents.onclick = function() {showFullQnA(this)}
-
-            newDiv.appendChild(closeButton);
-            newDiv.appendChild(questionBoxContents);
-            
-            title.value="";
-            contents.value="";
-            postbox.style.display ="none";
-            // new div를 기존 div에 추가
-            document.getElementById('my_questions').prepend(newDiv);
-        }
-
         function showFullQnA (qbox_obj) {
             modal = document.getElementById('qnaModal')
             modal_contents = document.getElementById('qnaModal_contents');
@@ -151,9 +102,18 @@
                 modal_answer.innerHTML = answer
             }
             
+
+            /* 교사 선택지 */
+            answer_btn = document.getElementById('answer_btn')
+            answer_btn.onclick = function() {
+                postAnswer(qbox_obj)
+            }
+
             modal.style.display = 'block';
         }        
 
+
+        
         function addDummyQuestion() {
             // new div 생성
             newDiv = document.createElement('div');
@@ -187,6 +147,7 @@
             document.getElementById('questions').prepend(newDiv);
         }
     
+        
         
 
     </script>
