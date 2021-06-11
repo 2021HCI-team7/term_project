@@ -16,7 +16,7 @@
     <div id = "question_board">
         <div id = 'qnaModal'>
             <div id ='qnaModal_contents'>
-                <input id = "pin" type="button" value="PIN">
+                <input id = "pin_btn" type="button" value="PIN">
                 <span id='modal_close' class='close'> x </span>
                 <br>
                 <div id = 'qnaModal_qTitle' class='headline4'></div>
@@ -102,13 +102,28 @@
                 modal_answer.innerHTML = answer
             }
             
-
             /* 교사 선택지 */
             answer_btn = document.getElementById('answer_btn')
             answer_btn.onclick = function() {
                 postAnswer(qbox_obj)
             }
 
+            
+            if (qbox_obj.parentNode.id == 'questions'){
+                pin_btn = document.getElementById('pin_btn')
+                pin_btn.setAttribute('value','PIN')
+                pin_btn.onclick = function() {
+                    pinQuestion(qbox_obj,0)
+                }
+            }
+            else if (qbox_obj.parentNode.id == 'fixed_questions'){
+                pin_btn = document.getElementById('pin_btn')
+                pin_btn.setAttribute('value','UNPIN')
+                pin_btn.onclick = function() {
+                    pinQuestion(qbox_obj,1)
+                }
+            }
+            
             modal.style.display = 'block';
         }        
 
@@ -151,9 +166,33 @@
             document.getElementById('questions').prepend(newDiv);
         }
     
-        function pinQuestion (qbox_obj) {
+        function pinQuestion (qbox_obj, _flag) {
+            clone = qbox_obj.cloneNode(true)
+            clone.onclick = function() {showFullQnA(this)}
 
+            if (_flag == 0) {
+                mark = document.createElement('span');
+                mark.setAttribute('class','mark_my_question')
+                mark.innerHTML='pinned'
+                clone.prepend(mark)
+                document.getElementById('fixed_questions').appendChild(clone)
+                alert('질문이 고정되었습니다!')
+            }
+            else if (_flag == 1){
+                mark = clone.getElementsByClassName('mark_my_question')[0]
+                clone.removeChild(mark)
+                document.getElementById('questions').appendChild(clone)
+                alert('질문이 고정 해제 되었습니다!')
+            }
+            modal.style.display = 'none'; 
+            document.getElementById('qnaModal_qTitle').innerHTML=''
+            document.getElementById('qnaModal_qDateUser').innerHTML=''
+            document.getElementById('qnaModal_qContents').innerHTML=''
+            document.getElementById('qnaModal_anwerContents').innerHTML=''
+            document.getElementById('input_answer').innerHTML=''
+            qbox_obj.style.display='none';
         }
+
     </script>
 </body>
 </html>
