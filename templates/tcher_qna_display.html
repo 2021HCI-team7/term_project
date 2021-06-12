@@ -9,14 +9,17 @@
     <title>QNA-Teacher</title>
 </head>
 <body>
-    <div class="header" style="text-align: right">
-        <input type='button' value='dev_func generate dummy' onclick='addDummyQuestion()' />
+    <div class="header question">
+        <span style="color:whitesmoke; font-size: 27px;font-weight:bold;margin-left:5px;"
+        onclick='addDummyQuestion()'>
+            Q&A
+        </span>
     </div>
     <br>
     <div id = "question_board">
         <div id = 'qnaModal'>
             <div id ='qnaModal_contents'>
-                <input id = "pin_btn" type="button" value="PIN">
+                <input id = "pin_btn" type="button" value="Pin this Q&A" class='q_medium_btn'>
                 <span id='modal_close' class='close'> x </span>
                 <br>
                 <div id = 'qnaModal_qTitle' class='headline4'></div>
@@ -26,8 +29,8 @@
                 <hr>
                 <span class='headline4'>A.</span>
                 <div id = 'qnaModal_anwerContents' class='answer_contents'></div>
-                <textarea id="input_answer" cols=140 wrap='hard' style="display:none"></textarea>
-                <input id = "answer_btn" type="button" value='Answer!' >
+                <textarea id="input_answer" cols=107 wrap='hard' ></textarea>
+                <input id = "answer_btn" type="button" value='Answer!' class='q_medium_btn' style="float:right;font-size:20px;">
             </div>
         </div>
         <div id = "fixed_questions">
@@ -66,14 +69,20 @@
                 if (text_area.value != ''){
                     modal_answer.innerHTML=text_area.value
                     qbox_obj.getElementsByClassName('answer_contents hide')[0].innerHTML = modal_answer.innerHTML
+                    modal_answer.style.display='block'
+                    text_area.style.display='none'
+                    btn.setAttribute('value','Answer!')
                 }
                 else {
-                    modal_answer.innerHTML = '작성된 답변이 없습니다.'
-                    qbox_obj.getElementsByClassName('answer_contents hide')[0].innerHTML = ''
+                    var r= confirm("작성된 내용이 없습니다. 내용을 삭제한 경우 작성했던 정보는 저장되지 않으니 유의하시기 바랍니다.")
+                    if (r==true) {
+                        modal_answer.innerHTML = '작성된 답변이 없습니다.'
+                        qbox_obj.getElementsByClassName('answer_contents hide')[0].innerHTML = ''
+                        modal_answer.style.display='block'
+                        text_area.style.display='none'
+                        btn.setAttribute('value','Answer!')
+                    }
                 }
-                modal_answer.style.display='block'
-                text_area.style.display='none'
-                btn.setAttribute('value','Answer!')
             }
         }
         
@@ -88,7 +97,7 @@
 
             title = qbox_obj.getElementsByClassName('qtitle')[0].innerHTML;
             date = qbox_obj.getElementsByClassName('inline-date')[0].innerHTML;
-            user = qbox_obj.getElementsByClassName('user_id')[0].innerHTML;
+            user = qbox_obj.getElementsByClassName('q_user_id')[0].innerHTML;
             contents = qbox_obj.getElementsByClassName('qcontents')[0].innerHTML;
             answer = qbox_obj.getElementsByClassName('answer_contents hide')[0].innerHTML;
             
@@ -111,14 +120,14 @@
             
             if (qbox_obj.parentNode.id == 'questions'){
                 pin_btn = document.getElementById('pin_btn')
-                pin_btn.setAttribute('value','PIN')
+                pin_btn.setAttribute('value','Pin this Q&A')
                 pin_btn.onclick = function() {
                     pinQuestion(qbox_obj,0)
                 }
             }
             else if (qbox_obj.parentNode.id == 'fixed_questions'){
                 pin_btn = document.getElementById('pin_btn')
-                pin_btn.setAttribute('value','UNPIN')
+                pin_btn.setAttribute('value','Remove pin')
                 pin_btn.onclick = function() {
                     pinQuestion(qbox_obj,1)
                 }
@@ -143,7 +152,7 @@
             
             var userid = 'user'+(Math.floor(Math.random()*50))
             postUser = document.createElement('span')
-            postUser.setAttribute('class', 'user_id')
+            postUser.setAttribute('class', 'q_user_id')
             postUser.innerHTML='  by. '+userid
 
             const newContents = document.createElement('p');
@@ -172,17 +181,17 @@
 
             if (_flag == 0) {
                 mark = document.createElement('span');
-                mark.setAttribute('class','mark_my_question')
+                mark.setAttribute('class','mark_question pin')
                 mark.innerHTML='pinned'
                 clone.prepend(mark)
                 document.getElementById('fixed_questions').appendChild(clone)
                 alert('질문이 고정되었습니다!')
             }
             else if (_flag == 1){
-                mark = clone.getElementsByClassName('mark_my_question')[0]
+                mark = clone.getElementsByClassName('mark_question pin')[0]
                 clone.removeChild(mark)
                 document.getElementById('questions').appendChild(clone)
-                alert('질문이 고정 해제 되었습니다!')
+                alert('질문이 고정 해제 되었습니다.')
             }
             modal.style.display = 'none'; 
             document.getElementById('qnaModal_qTitle').innerHTML=''

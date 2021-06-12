@@ -9,15 +9,23 @@
     <title>QNA</title>
 </head>
 <body>
-    <div class="header" style="text-align: right">
-        <input type='button' value='dev_func generate dummy' onclick='addDummyQuestion()' />
-        <input type='button' value='Ask Question' onclick='toggleQuestionInputBox()' />
+    <div class="header question">
+        <span style="color:whitesmoke; font-size: 27px;font-weight:bold;margin-left:5px;"
+        onclick='addDummyQuestion()'>
+            Q&A
+        </span>
+        <input type='button' value='Ask Question' 
+        id = "ask_btn"
+        onclick='toggleQuestionInputBox()' >
     </div>
     <div id = "question_postbox" style="display:none;">
-        <input type=text id="p_qtitle" placeholder="_title" maxlength="65"><br>
-        <textarea id = "p_qcontents" cols=80 wrap="hard"></textarea>
+        <input type=text id="p_qtitle" placeholder="질문 제목을 입력하세요" maxlength="65"><hr>
+        <textarea id = "p_qcontents" cols=95 wrap="hard" placeholder="구체적인 질문 내용을 입력하세요."></textarea>
         <input type=hidden name="user_id" value="stdnt_01">
-        <button onclick="addQuestion()">Ask!</button>
+        <br>
+        <button onclick="addQuestion()" class="q_medium_btn" style="position:relative;left:94%;font-size:16px">
+            Ask!
+        </button>
     </div>
     <br>
     <div id = "question_board">
@@ -79,7 +87,7 @@
             questionBoxContents.setAttribute('class', 'question_box_contents')
 
             const mark = document.createElement('span');
-            mark.setAttribute('class','mark_my_question')
+            mark.setAttribute('class','mark_question my')
             mark.innerHTML='MY'
 
             const newTitle = document.createElement('span');
