@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>teacher page</title>
     <link href="../static/view.css" rel="stylesheet" />
+    <link rel ="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> 
     <!--여기까지 레이아웃, 펼쳐지는 메뉴 등과 같은 기능 라이브러리-->
 </head>
@@ -62,16 +64,32 @@
 		</div>
 	 	  
 </div>
-    
-    
+        
     <div class="column wid85"> <!--이 영역이 디스플레이 영역-->
       <div id="lec_discrip"  >
 		  <div class="header">
 			  <h4>"수업이름"</h4></div>
         <br>
-      <br>
-      <br>
-      <br>
+        <div class="lec_ing"> 
+          <table class="lec_table"> 
+          
+          <colgroup><col width="120px" /><col /></colgroup> 
+          <tbody> 
+          
+          <tr> 
+              <th style="height: 40px;width: 16%">권장 진도</th> 
+              <th style="height: 40px; width: 78%"> <div><progress value="40" max="100" id="jb"> </progress> </div> </th>
+              <th style="height: 40px; width: 4%; padding-left: 2%; ">40%</th>
+                
+          </tr> 
+          <tr> 
+              <th style="height: 40px; width: 16%">학생 평균 진도</th> 
+              <th style="height: 40px; width: 78%"> <div><progress value="30" max="100" id="jb"> </progress> </div> </th>
+              <th style="height: 40px; width: 4%; padding-left: 2%; ">30%</th>
+          </tr> 
+          </tbody> 
+          </table> 
+      </div> 
       <br>
       <br>
      
@@ -88,11 +106,8 @@
 		</tr>
 		<tr>
 			<td>1</td>
-<<<<<<< HEAD
 			<td>&nbsp;</td>		
-=======
 			<td><a href="tcher_learn1.html">Lesson1</a></td>		
->>>>>>> 5dc879b9bbcecc992f97b045b350b7484dff5740
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
@@ -180,6 +195,12 @@
         });
         });
   </script>
+<script>
+  function jbFunc() {
+    document.getElementById( 'jb' ).value = '80';
+  }
+</script>
+  
 </body>
 
 </html>
