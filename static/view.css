@@ -2,7 +2,7 @@
 .header {
   background-color: #f1f1f1;
   text-align: left;
-  width: 100%;
+  width: 1040px;
   margin-bottom: 10px;
 }
 .column {
@@ -11,13 +11,13 @@
 
 /* Left and right column */
 .column.wid15 {
-  width: 15%;
+  width: 230px;
 }
 
 /* Middle column */
 .column.wid85 {
-  width: 80%;
-  margin-left: 2%;
+  width: 800px;
+  margin-left: 10px;
 }
 
 .column.half {
@@ -53,11 +53,16 @@
 .lec_box {
   background-color:#f1f1f1;
   height:auto;
-  min-height:500px;
+  min-height:550px;
 }
+
 .headline4 {
   font-size:20px;
   font-weight: bold;
+}
+.menu {
+  margin:0 0 15px;
+  font-weight:bold;
 }
 .menu a {
   cursor:pointer;
@@ -70,11 +75,11 @@
   position: relative;
   float:right;
   font-weight:bold;
-  font-size: 23px;
+  font-size: 20px;
   padding-left:10px;
   padding-right:10px;
-  padding-top:3px;
-  padding-bottom:5px;
+  padding-top:5px;
+  padding-bottom:7px;
   outline:0;
   border: 0;
   display: block;
@@ -253,14 +258,10 @@
 }
 
 .info > span{
-	font-size: 17px;
+	font-size: 25px;
 }
 
-.info > span{
-	font-size: 17px;
-}
-
-#lec_discrip >.header {
+#lec_discrip >.header2 {
 	background-color:cornflowerblue;
 	
 }
@@ -281,10 +282,28 @@ text-align: center;
 	border-bottom: medium;
 }
 
-
 #jb {
   width: 100%;
   height: 50px;
 }
 
+.add_lesson {
+  font-weight:bold;
+}
 
+.userID {
+  width: 70px; 
+  height: 70px; 
+  float: left;
+  margin-right: 10px;
+}
+#body {
+  position: absolute;
+  left: 15%;
+}
+.lec_table {
+  width:770px;
+}
+.header_info{
+  height:70px;
+}

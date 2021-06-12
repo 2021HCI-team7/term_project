@@ -10,10 +10,18 @@
     <!--여기까지 레이아웃, 펼쳐지는 메뉴 등과 같은 기능 라이브러리-->
     <title>Student_page</title>
 </head>
-<body>
+<body id="body">
   <div class = "header">
     <div id = "user_info_area">
-      <img src="../image/user.png" width="50" height="50" style="float:left;margin-right:10px;"><span style="font-size:17px;">USER NAME (학생)<br>ID NUMBER</span>
+      <div class = "header_info">
+			  <img class="userID" src="../image/user.png">
+			  <div class = "info">
+				  <span>
+				  <b>USER NAME (학생) </b> <br>
+				  <b>ID NUMBER </b>
+				  </span>
+		    </div>
+	    </div>
     </div>
   </div>
 
@@ -21,26 +29,25 @@
 
     <div class="column wid15" > <!--이 영역이 메뉴 영역-->
       <div class="lec_box" >
-        <a class='menu_title'>수강목록</a>
+        <a class='menu_title'>수강 목록</a>
         <div>
           <ul>
-            <li class="menu"> <a>수업1</a>
+            <li class="menu"> <a>인간과 컴퓨터 상호작용</a>
               <ul class="hide">
-                <li><a href="stdnt_main.html">main</a></li>
-                <li><a href="stdnt_hmwrk1.html">Lesson 1</a></li>
-                <li><a href="stdnt_hmwrk2.html">Lesson 2</a></li>
-                <li><a href="stdnt_hmwrk3.html">Lesson 3</a></li>
+                <li><a href="stdnt_main.html"><b>Home</b></a></li>
+                <li><a href="stdnt_learn1.html">Lesson 1</a></li>
+                <li><a href="stdnt_learn2.html">Lesson 2</a></li>
+                <li><a href="stdnt_learn3.html">Lesson 3</a></li>
               </ul>
             </li>
             
             <li class="menu"> <a>수업2</a>
               <ul class="hide">
-                <li>메뉴2-1</li>
-                <li>메뉴2-2</li>
-                <li>메뉴2-3</li>
-                <li>메뉴2-4</li>
-                <li>메뉴2-5</li>
-                <li>메뉴2-6</li>
+              </ul>
+            </li>
+
+            <li class="menu"> <a>수업3</a>
+              <ul class="hide">
               </ul>
             </li>
 
@@ -55,7 +62,7 @@
     
     <div class="column wid85"> <!--이 영역이 디스플레이 영역-->
       <button style="font-weight:bold;font-size: 25px;padding-left:30px;padding-right:30px;padding-top:5px;padding-bottom:5px;outline:0;border:0;border-radius:10px;" onclick="location.href='stdnt_learn1.html'">강의</button> <button style="font-weight:bold;font-size: 25px;padding-left:30px;padding-right:30px;padding-top:5px;padding-bottom:5px;outline:0;border:0;border-radius:10px;background-color:#bbdefb;" onclick="location.href='stdnt_hmwrk1.html'">과제</button>
-      <div id="lec_discrip" style="background-color:blueviolet">
+      <div id="lec_discrip" class="menu_title">
         <h4>"Lesson 1"</h4>
       </div>
 
@@ -102,6 +109,8 @@
           border: 1px solid #444444;
           border-collapse : collapse;
           background-color: white;
+          text-align: left;
+          padding-left:5px;
         }
         #upload {
            display: inline-block; 

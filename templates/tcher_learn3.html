@@ -10,10 +10,18 @@
     <!--여기까지 레이아웃, 펼쳐지는 메뉴 등과 같은 기능 라이브러리-->
     <title>Teacher_page</title>
 </head>
-<body>
+<body id="body">
   <div class = "header">
     <div id = "user_info_area">
-      <img src="../image/user.png" width="50" height="50" style="float:left;margin-right:10px;"><span style="font-size:17px;">USER NAME (교사)<br>ID NUMBER</span>
+      <div class = "header_info">
+			  <img class="userID" src="../image/user.png">
+			  <div class = "info">
+				  <span>
+				  <b>USER NAME (교수) </b> <br>
+				  <b>ID NUMBER </b>
+				  </span>
+		    </div>
+	    </div>
     </div>
   </div>
 
@@ -21,12 +29,12 @@
 
     <div class="column wid15" > <!--이 영역이 메뉴 영역-->
       <div class="lec_box" >
-       <a class='menu_title'>수업목록메뉴</a>
+       <a class='menu_title'>수업 목록</a>
         <div>
           <ul>
-            <li class="menu"> <a>수업1</a>
+            <li class="menu"> <a>인간과 컴퓨터 상호작용</a>
               <ul class="hide">
-                <li><a href="tcher_main.html">main</a></li>
+                <li><a href="tcher_main.html"><b>Home</b></a></li>
                 <li><a href="tcher_learn1.html">Lesson 1</a></li>
                 <li><a href="tcher_learn2.html">Lesson 2</a></li>
                 <li><a href="tcher_learn3.html">Lesson 3</a></li>
@@ -34,6 +42,11 @@
             </li>
             
             <li class="menu"> <a>수업2</a>
+              <ul class="hide">
+              </ul>
+            </li>
+
+            <li class="menu"> <a>수업3</a>
               <ul class="hide">
               </ul>
             </li>
@@ -54,10 +67,10 @@
       </div>
 
       <div id="lec_list_table">
-        <button type="button" style="float: right;" onclick="toggleInputBox()">영상수정</button>
         <center>
           <iframe width="800" height="400" id="lesson" src="https://www.youtube.com/embed/PzBPVp8IPME?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </center>
+        <button id="xx" type="button" style="float: right;" onclick="toggleInputBox()">영상수정</button>
         <form id="URL_box" style="display: none; float: right;">                
           <input type="url" id="URL_text">
           <button type="button" id="change" onclick="changeVideo()">적용</button>
@@ -119,7 +132,7 @@
 
     function toggleInputBox() {
       const urlbox = document.getElementById("URL_box");
-          
+      document.getElementById('xx').remove();    
       if(urlbox.style.display === 'none')  {
         urlbox.style.display = 'block';
       }else {
